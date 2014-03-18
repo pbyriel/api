@@ -19,10 +19,10 @@ var validateInput = function (userInput) {
 };
     
 // To tell user that we are indeed searching
-function displayMessage() {
+var displayMessage = function () {
     $('#response').text('Looking for vids ...');
     console.log("displayMessage ran");
-}
+};
 
 // To hide results from last search
 function hideResults() {
@@ -43,10 +43,15 @@ function hideResults() {
 // Function to get title + set src of image
 var displayVideo = function (video) {
     // first append a div and addClass("videoitem");
+    $("#grid").append("div").addClass("videoitem");
+    // make it easy to refer to the last div
+    var thisdiv = $("#grid").find("div").last();
     // then insert an h2 and set h2 equal to var title
     var title = video.title;
+    thisdiv.append("<h2>" + title + "</h2>");
     // then insert image el and set src equal to var image
-    var image = video.thumbnails.default.url;
+    var image = video.thumbnails.default.url; //link to image from api
+    //thisdiv.append(WHAT).attr("src", image);
 };
 
 // Function to  display + start a video that is clicked
@@ -68,12 +73,12 @@ function newSearch(userInput) {
 }
 
 // WHAT DATA DO I NEED TO PASS IN HERE?
-    var link = "https://gdata.youtube.com/feeds/api/users/";
-    var channelID = "UCsooa4yRKGN_zEE8iknghZA";
-    var postfix = "?v=2.1";	// not sure what it should be
+var link = "https://gdata.youtube.com/feeds/api/users/";
+var channelID = "UCsooa4yRKGN_zEE8iknghZA";
+var postfix = "?v=2.1";	// not sure what it should be
 
 // Function containing ajax-call
-var getVidsResult = function(userInput){
+var getVidsResult = function (userInput) {
     console.log("getVidsResult started");
     //The ajax-function
     var result = $.ajax({
@@ -84,17 +89,17 @@ var getVidsResult = function(userInput){
         type: "GET"
     })
     // what gets done with the result
-    .done(function(result){
-        $.each(result.items, function(i, item) {
-            var vid = displayVideo(item);
-			$('#grid').append(vid);
-		});
-	})
+        .done(function (result) {
+            $.each(result.items, function (i, item) {
+                var vid = displayVideo(item);
+                $('#grid').append(vid);
+            });
+        })
     // if all else fails...
-    .fail(function(jqXHR, error, errorThrown){
-        var errorElem = showError(error);
-		$('#top').append(errorElem);
-	});
+        .fail(function (jqXHR, error, errorThrown) {
+            var errorElem = showError(error);
+            $('#top').append(errorElem);
+        });
     // reached the end, tell it to the console
     console.log("getVidsResult finished");
 };
@@ -127,7 +132,7 @@ $(document).ready(function () {
     //Function for what happens when user clicks on videoitem in the grid
     $("grid div").click(function () {
         console.log("image div was pressed");
-        playVideo($(this));
+        //playVideo($(this));
     });
 // Final end brackets for document ready function
 });
