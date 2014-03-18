@@ -11,7 +11,7 @@ var showError = function (error) {
 // To validate userInput
 var validateInput = function (userInput) {
     console.log("validateInput started");
-    if (userInput === '') {
+    if (userInput == '') {
         alert("Please enter search terms");
     } else {
         newSearch(userInput);
