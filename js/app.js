@@ -51,6 +51,12 @@ var displayVideo = function (video) {
 
 // Function to  display + start a video that is clicked
 // function playVideo();
+/* Dummy code below
+http://www.youtube.com/embed/VIDEO_ID
+<iframe id="ytplayer" type="text/html" width="640" height="390"
+  src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"
+  frameborder="0"/>
+  */
 
 /*--- Main search functions go here ---*/
 
@@ -64,7 +70,7 @@ function newSearch(userInput) {
 // WHAT DATA DO I NEED TO PASS IN HERE?
     var link = "https://gdata.youtube.com/feeds/api/users/";
     var channelID = "UCsooa4yRKGN_zEE8iknghZA";
-    var postfix = "?v=2.1";	// not sure what it is
+    var postfix = "?v=2.1";	// not sure what it should be
 
 // Function containing ajax-call
 var getVidsResult = function(userInput){
@@ -92,7 +98,6 @@ var getVidsResult = function(userInput){
     // reached the end, tell it to the console
     console.log("getVidsResult finished");
 };
-
 
 
 /*--- Finally, the jquery function that starts the machine ---*/
