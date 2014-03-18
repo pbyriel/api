@@ -29,8 +29,8 @@ function hideResults() {
     if (earlierResult) {
         //stop current video by resetting attributes
         $('#videoframe').attr("src", ""); // or will it be "href"
-        //hide last response
-        $('#response').fadeOut('slow');
+        //delete last response
+        $("#response").text('');
         // Clear grid of pictures from last search
         $('#grid').empty();
         // Hide video frame if displayed

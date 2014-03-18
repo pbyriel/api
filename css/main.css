@@ -31,6 +31,7 @@ body {
 }
 
 #input {
+    border-radius: 5px;
     font-size: 0.7em;
     margin: 10px;
     padding: 5px;
@@ -42,7 +43,7 @@ body {
 
 #button {
     background: none;
-    border: 2px solid DarkGrey;
+    border: 1px solid LightGrey;
     border-radius: 10px;
     cursor: pointer;
     display: inline-block;
@@ -55,7 +56,7 @@ body {
 }
 
 #button:hover{
-    border: 2px solid #000;
+    border: 2px solid DarkGrey;
     transition: all 0.25s;
 }
 
@@ -99,8 +100,7 @@ body {
 }
 
 .videoitem {
-    background: #f2f2f2; 
-    border:2px solid #333;
+    border:1px solid LightGrey;
     float: left; 
     margin: 5px;
     padding: 5px;
