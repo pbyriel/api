@@ -3,7 +3,7 @@ var earlierResult = false;
 /*--- Helper functions go here ---*/
 
 // takes error string and turns it into displayable DOM element
-var showError = function(error){
+var showError = function (error) {
 	var errorText = '<p>' + error + '</p>';
 	return errorText;
 };
@@ -12,9 +12,9 @@ var showError = function(error){
 var validateInput = function (userInput) {
     console.log("validateInput started");
     if (userInput === '') {
-        newSearch(userInput);
-    } else {
         alert("Please enter search terms");
+    } else {
+        newSearch(userInput);
     }
 };
     
@@ -47,7 +47,7 @@ var displayVideo = function (video) {
     var title = video.title;
     // then insert image el and set src equal to var image
     var image = video.thumbnails.default.url;
-
+};
 
 // Function to  display + start a video that is clicked
 // function playVideo();
@@ -61,23 +61,23 @@ function newSearch(userInput) {
 	//getVidsResult(userInput);
 }
 
+// WHAT DATA DO I NEED TO PASS IN HERE?
+    var link = "https://gdata.youtube.com/feeds/api/users/";
+    var channelID = "UCsooa4yRKGN_zEE8iknghZA";
+    var postfix = "?v=2.1";	// not sure what it is
 
+// Function containing ajax-call
 var getVidsResult = function(userInput){
-    console.log("getVidsResult finished");
-    
-    // WHAT DATA DO I NEED TO PASS IN HERE?
-    // the parameters we need to pass in our request to YouTubes's API
-	var result = $.ajax({
-        var link = "https://gdata.youtube.com/feeds/api/users/"
-        var postfix = "?v=2.1"	// not sure what it is
-        var channelID = "UCsooa4yRKGN_zEE8iknghZA"
+    console.log("getVidsResult started");
+    //The ajax-function
+    var result = $.ajax({
         url: link + channelID + userInput + postfix,
-		data: {site: 'youtube'},
+        data: {site: 'youtube'},
         part: 'snippet',
-		dataType: "jsonp",
-		type: "GET"
-		})
-    // what gets done with the result from our request
+        dataType: "jsonp",
+        type: "GET"
+    })
+    // what gets done with the result
     .done(function(result){
         $.each(result.items, function(i, item) {
             var vid = displayVideo(item);
@@ -118,7 +118,10 @@ $(document).ready(function () {
 	});
     
     //Function for what happens when user clicks on videoitem in the grid
-    
+    $("grid div").click(function () {
+        console.log("image div was pressed");
+        playVideo($(this));
+    });
 // Final end brackets for document ready function
 });
 
