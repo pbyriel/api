@@ -23,7 +23,7 @@ var validateInput = function (userInput) {
     }
 };
     
-// To tell user that we are indeed searching
+// To tell user that we are indeed searching HOW TO MAKE IT DISAPPEAR AGAIN
 var displayMessage = function () {
     $('#response').text('Looking for vids ...');
     console.log("displayMessage ran");
