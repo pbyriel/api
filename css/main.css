@@ -1,5 +1,11 @@
+/* TO DO:
+FINAL POSITIONING 
+FINAL ADJUSTMENTS
+REMOVE POSITIONING BORDERS 
+*/
+
 body {
-	font-family: sans-serif;
+	font-family: sans-serif; 
     height: 100%;
 }
 
@@ -9,8 +15,6 @@ body {
     /* remove top two lines after positioning */
     margin-left: auto;
     margin-right: auto;
-    min-height: 100%;
-    height: auto;
     width: 90%;
 }
 
@@ -33,7 +37,8 @@ body {
 }
 
 #input {
-    font-size: 1em;
+    border-radius: 5px;
+    font-size: 0.7em;
     margin: 10px;
     padding: 5px;
 }
@@ -43,21 +48,21 @@ body {
 }
 
 #button {
-    background: #FF2A0E;
-    border: 2px solid #4f4f4f;
-    border-radius: 5px 5px 5px 5px;
+    background: none;
+    border: 1px solid LightGrey;
+    border-radius: 10px;
     cursor: pointer;
     display: inline-block;
-    font-size: 1em;
+    font-size: 0.9em;
     margin: 5px;
     padding: 5px;
     text-align: center;
     text-decoration: none;
-    width: 90px;
+    width: 50px;
 }
 
 #button:hover{
-    border: 2px solid #000;
+    border: 2px solid DarkGrey;
     transition: all 0.25s;
 }
 
@@ -66,16 +71,9 @@ body {
 }
 
 #response {
-    display: inline-block;
-    font-size: 2em;
-    margin: 10px;
+    font-size: 1.5em;
+    padding: 10px;
 }
-
-#video {
-	display: none;
-}
-
-#videoinfo
 
 #container_vid {
     position: relative;
@@ -90,8 +88,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
 }
 
 .videoitem img {
@@ -102,8 +100,7 @@ body {
 }
 
 .videoitem {
-    background: #f2f2f2; 
-    border:2px solid #333;
+    border:1px solid LightGrey;
     float: left; 
     margin: 5px;
     padding: 5px;
