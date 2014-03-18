@@ -1,5 +1,5 @@
 body {
-	font-family: sans-serif;
+	font-family: sans-serif; 
     height: 100%;
 }
 
@@ -9,8 +9,6 @@ body {
     /* remove top two lines after positioning */
     margin-left: auto;
     margin-right: auto;
-    min-height: 100%;
-    height: auto;
     width: 90%;
 }
 
@@ -33,7 +31,7 @@ body {
 }
 
 #input {
-    font-size: 1em;
+    font-size: 0.7em;
     margin: 10px;
     padding: 5px;
 }
@@ -43,17 +41,17 @@ body {
 }
 
 #button {
-    background: #FF2A0E;
-    border: 2px solid #4f4f4f;
-    border-radius: 5px 5px 5px 5px;
+    background: none;
+    border: 2px solid DarkGrey;
+    border-radius: 10px;
     cursor: pointer;
     display: inline-block;
-    font-size: 1em;
+    font-size: 0.9em;
     margin: 5px;
     padding: 5px;
     text-align: center;
     text-decoration: none;
-    width: 90px;
+    width: 50px;
 }
 
 #button:hover{
@@ -66,9 +64,8 @@ body {
 }
 
 #response {
-    display: inline-block;
-    font-size: 2em;
-    margin: 10px;
+    font-size: 1.5em;
+    padding: 10px;
 }
 
 #video {
