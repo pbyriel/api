@@ -2,6 +2,11 @@ var earlierResult = false, uinput;
 
 /*--- Helper functions go here ---*/
 
+// clears user input
+var clearVal = function () {
+    $("#input").val("");
+};
+
 // takes error string and turns it into displayable DOM element
 var showError = function (error) {
 	var errorText = '<p>' + error + '</p>';
@@ -118,7 +123,8 @@ $(document).ready(function () {
         if (event.keyCode === 13) {
             console.log("Enter was pressed");
             validateInput(uinput);
-            uinput.val("");
+            clearVal();
+            
 		}
     });
     // What to do when search button is clicked 
@@ -126,7 +132,7 @@ $(document).ready(function () {
         uinput = $("#input").val();
         console.log("Button was pressed");
         validateInput(uinput);
-        uinput.val("");
+        clearVal();
 	});
     
     //Function for what happens when user clicks on videoitem in the grid
