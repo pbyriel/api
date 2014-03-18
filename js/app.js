@@ -2,6 +2,11 @@ var earlierResult = false, uinput;
 
 /*--- TO DO ---*/
 // WORKING CONNECTION TO ENDPOINT
+// What should the base link be?
+// How do i get the channel TED-ED only
+// Is there a paramter needed before the uinput?
+// Where in the url do I insert the uinput 
+
 // HOW TO PASS VIDEO (ID OR OBJECT) TO PLAYVIDEO
 // HOW TO HIDE DISPLAYED SEARCH MESSAGE
 
@@ -86,7 +91,9 @@ function newSearch(userInput) {
 }
 
 // WHAT DATA DO I NEED TO PASS IN HERE?
-var link = "https://gdata.youtube.com/feeds/api/users/";
+// What should the base link be?
+var link = "https://gdata.youtube.com/feeds/api/users/"; //doesn't seem right
+// How do i get the channel TED-ED only
 var channelID = "UCsooa4yRKGN_zEE8iknghZA";
 // will need more data above, not sure what it should be
 var tryurl: link + channelID + uinput;
