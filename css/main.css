@@ -1,0 +1,129 @@
+body {
+	font-family: sans-serif;
+    height: 100%;
+}
+
+#main {
+    border: 1px solid black;
+    padding: 5px;
+    /* remove top two lines after positioning */
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100%;
+    height: auto;
+    width: 90%;
+}
+
+#topnav {
+    padding-top: 10px;
+    width: 100%;
+    border: 1px dashed blue;
+}
+
+#visit {
+    border: 1px solid yellow;
+};
+
+#visit img {
+    vertical-align: middle;
+}
+
+#topnav a {
+	text-decoration: none;
+}
+
+#input {
+    font-size: 1em;
+    margin: 10px;
+    padding: 5px;
+}
+
+#input:focus, input:hover {
+    outline: 0;
+}
+
+#button {
+    background: #FF2A0E;
+    border: 2px solid #4f4f4f;
+    border-radius: 5px 5px 5px 5px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    width: 90px;
+}
+
+#button:hover{
+    border: 2px solid #000;
+    transition: all 0.25s;
+}
+
+#videopart {
+    border: 1px dashed red;
+}
+
+#response {
+    display: inline-block;
+    font-size: 2em;
+    margin: 10px;
+}
+
+#video {
+	display: none;
+}
+
+#videoinfo
+
+#container_vid {
+    position: relative;
+    padding-top: 10px;
+	height: 0;
+	overflow: hidden;
+}
+ 
+#container_vid iframe,
+#container_vid object,
+#container_vid embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.videoitem img {
+    width: 175px;
+}
+.videoitem h2 {
+    font-size: 1em;
+}
+
+.videoitem {
+    background: #f2f2f2; 
+    border:2px solid #333;
+    float: left; 
+    margin: 5px;
+    padding: 5px;
+    height: 350x; 
+	overflow:auto;
+    width: 300px; 
+}
+.videoitem:hover {
+	cursor: pointer;
+	border: 1px solid blue;
+}
+
+#footer {
+    border: 1px dashed red;
+    font-size: 1em;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    position: relative;
+}
+
+#youtube-logo {
+    vertical-align: middle;
+}
