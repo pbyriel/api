@@ -1,5 +1,10 @@
 var earlierResult = false, uinput;
 
+/*--- TO DO ---*/
+// WORKING CONNECTION TO ENDPOINT
+// HOW TO PASS VIDEO (ID OR OBJECT) TO PLAYVIDEO
+// HOW TO HIDE DISPLAYED SEARCH MESSAGE
+
 /*--- Helper functions go here ---*/
 
 // clears user input
@@ -141,7 +146,7 @@ $(document).ready(function () {
     //Function for what happens when user clicks on videoitem in the grid
     $("grid div").click(function () {
         console.log("image div was pressed");
-        //playVideo($(this));
+        //playVideo($(this)); // HOW PASS ID/VIDEOOBJECT
     });
 // Final end brackets for document ready function
 });
