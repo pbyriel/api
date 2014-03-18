@@ -35,15 +35,15 @@ var validateInput = function (userInput) {
     
 // To tell user that we are indeed searching HOW TO MAKE IT DISAPPEAR AGAIN
 var displayMessage = function () {
-    $('#response').text('Looking for vids ...');
+    $('#response').text('Looking for vidoes ...');
     console.log("displayMessage ran");
 };
 
 // To hide results from last search
 function hideResults() {
     if (earlierResult) {
-        //stop current video by resetting attributes
-        $('#videoframe').attr("src", ""); // or will it be "href"
+        //stop current video by resetting div
+        $('#container_vid').empty();
         //delete last response
         $("#response").text('');
         // Clear grid of pictures from last search
