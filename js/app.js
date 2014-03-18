@@ -1,4 +1,4 @@
-var earlierResult = false;
+var earlierResult = false, uinput;
 
 /*--- Helper functions go here ---*/
 
@@ -106,20 +106,22 @@ $(document).ready(function () {
 //when page is ready, focus to input
     $('#input').focus();
     // get value of user input
-    var userInput = $('#input').val().trim();
+    uinput = $("#input").val();
     // What to do on submit by enter
 	$('#input').keydown(function (event) {
+        uinput = $("#input").val();
         if (event.keyCode === 13) {
             console.log("Enter was pressed");
-            validateInput(userInput);
-            userInput.val('');
+            validateInput(uinput);
+            uinput.val("");
 		}
     });
     // What to do when search button is clicked 
 	$('#button').click(function () {
+        uinput = $("#input").val();
         console.log("Button was pressed");
-        validateInput(userInput);
-        userInput.val('');
+        validateInput(uinput);
+        uinput.val("");
 	});
     
     //Function for what happens when user clicks on videoitem in the grid
