@@ -1,14 +1,9 @@
 var earlierResult = false, uinput;
 
 /*--- TO DO ---*/
-// WORKING CONNECTION TO ENDPOINT
-// What should the base link be?
-// How do i get the channel TED-ED only
-// Is there a paramter needed before the uinput?
-// Where in the url do I insert the uinput 
-
+// TEST CONNECTION TO ENDPOINT
 // HOW TO PASS VIDEO (ID OR OBJECT) TO PLAYVIDEO
-// HOW TO HIDE DISPLAYED SEARCH MESSAGE
+// WHEN TO RUN CLEARMESSAGE
 
 /*--- Helper functions go here ---*/
 
@@ -16,6 +11,12 @@ var earlierResult = false, uinput;
 var clearVal = function () {
     $("#input").val("");
 };
+
+// removes search message from screen
+var clearMessage = function () {
+    $('#response').text();
+};
+
 
 // takes error string and turns it into displayable DOM element
 var showError = function (error) {
@@ -32,18 +33,18 @@ var validateInput = function (userInput) {
         newSearch(userInput);
     }
 };
-    
+
 // To tell user that we are indeed searching HOW TO MAKE IT DISAPPEAR AGAIN
 var displayMessage = function () {
-    $('#response').text('Looking for vids ...');
+    $('#response').text('Looking for vidoes ...');
     console.log("displayMessage ran");
 };
 
 // To hide results from last search
 function hideResults() {
     if (earlierResult) {
-        //stop current video by resetting attributes
-        $('#videoframe').attr("src", ""); // or will it be "href"
+        //stop current video by resetting div
+        $('#container_vid').empty();
         //delete last response
         $("#response").text('');
         // Clear grid of pictures from last search
@@ -71,45 +72,41 @@ var displayVideo = function (thisvideo) {
 
 // Function to  display + start a video that is clicked
 var playVideo = function (thisvideo) {
-    var video_id= thisvideo.id;
-    var video_title= thisvideo.title;
+    var video_id = thisvideo.id;
+    var video_title = thisvideo.title;
     var video_viewCount = thisvideo.viewCount;
     // iframe gets embedded in a variable
-    var video_frame="<iframe width='640' height='385' src='http://www.youtube.com/embed/" +  video_id + "' frameborder='0' type='text/html'></iframe>";  
+    var video_frame = "<iframe width='640' height='385' src='http://www.youtube.com/embed/" +  video_id + "' frameborder='0' type='text/html'></iframe>";
     // the iframe gets embedded in the page
-    var videocontent="<div id='title'>" + video_title + "</div><div>" + video_frame + "</div><div id='count'>" + video_viewCount + " views</div>";
+    var videocontent = "<div id='title'>" + video_title + "</div><div>" + video_frame + "</div><div id='count'>" + video_viewCount + " views</div>";
     $("#container_vid").html(videocontent);
 };
 
 /*--- Main search functions go here ---*/
-
 // Search result is voided, and data gets sent to a function for getting vids
 function newSearch(userInput) {
     hideResults();
     displayMessage();
-	//getVidsResult(userInput);
+	getVidsResult(userInput);
 }
 
-// WHAT DATA DO I NEED TO PASS IN HERE?
-// What should the base link be?
-var link = "https://gdata.youtube.com/feeds/api/users/"; //doesn't seem right
-// How do i get the channel TED-ED only
-var channelID = "UCsooa4yRKGN_zEE8iknghZA";
-// will need more data above, not sure what it should be
-var tryurl: link + channelID + uinput;
-
-// Function containing ajax-call
+// Function containing ajax-call, end: &alt=json
 var getVidsResult = function (userInput) {
     console.log("getVidsResult started");
+    // base link
+    var tedEd = '+TED-ED';
+    var apiversion = "&v=2";
+    var link = 'https://gdata.youtube.com/feeds/api/videos?q=' + userInput + tedEd + apiversion + '&alt=jsonc';
     //The ajax-function
     var result = $.ajax({
-        url: tryurl,
+        url: link,
         part: 'snippet',
         dataType: "jsonp",
         type: "GET"
     })
     // what gets done with the result
         .done(function (result) {
+            console.log("Succes!\nQuery result below\n" + result);
             $.each(result.items, function (i, item) {
                 var vid = displayVideo(item);
                 $('#grid').append(vid);
@@ -139,7 +136,6 @@ $(document).ready(function () {
             console.log("Enter was pressed");
             validateInput(uinput);
             clearVal();
-            
 		}
     });
     // What to do when search button is clicked 
