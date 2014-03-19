@@ -90,11 +90,12 @@ function newSearch(userInput) {
 	getVidsResult(userInput);
 }
 
-// Function containing ajax-call
+// Function containing ajax-call, end: &alt=json
 var getVidsResult = function (userInput) {
     console.log("getVidsResult started");
     // base link
-    var link = 'https://gdata.youtube.com/feeds/api/videos?q=' + userInput + '+TED-ED&alt=json';
+    var apiversion = "&v=2";
+    var link = 'https://gdata.youtube.com/feeds/api/videos?q=' + userInput + '+TED-ED' + apiversion + "&alt=jsonc';
     //The ajax-function
     var result = $.ajax({
         url: link,
