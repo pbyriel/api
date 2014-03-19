@@ -58,6 +58,7 @@ function hideResults() {
 
 // Function to get title + set src of image
 var displayVideo = function (thisvideo) {
+    // chech if function ran
     console.log("displayVideo started");
     // first append a div and addClass("videoitem");
     $("#grid").append("div").addClass("videoitem");
