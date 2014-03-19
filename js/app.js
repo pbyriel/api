@@ -1,10 +1,5 @@
 var earlierResult = false, uinput;
 
-/*--- TO DO ---*/
-// TEST CONNECTION TO ENDPOINT
-// HOW TO PASS VIDEO (ID OR OBJECT) TO PLAYVIDEO
-// WHEN TO RUN CLEARMESSAGE
-
 /*--- Helper functions go here ---*/
 
 // clears user input
@@ -14,9 +9,8 @@ var clearVal = function () {
 
 // removes search message from screen
 var clearMessage = function () {
-    $('#response').text();
+    $('#response').text('');
 };
-
 
 // takes error string and turns it into displayable DOM element
 var showError = function (error) {
@@ -57,31 +51,45 @@ function hideResults() {
 }
 
 // Function to get title + set src of image
-var displayVideo = function (thisvideo) {
+var showVideos = function (thisvideo) {
     // chech if function ran
-    console.log("displayVideo started");
+    $(".videopart").toggle();
+    console.log("showVideos started");
+    // set variables which will be encodes as data attributes
+    var idNo = thisvideo.id;
+    var viewCount = thisvideo.viewCount;
+    var title = thisvideo.title;
     // first append a div and addClass("videoitem");
-    $("#grid").append("div").addClass("videoitem");
+    $("#grid").append("<div>").addClass("videoitem");
     // make it easy to refer to the last div
     var thisdiv = $("#grid").find("div").last();
     // then insert an h2 and set h2 equal to var title
-    var title = thisvideo.title;
     thisdiv.append("<h2>" + title + "</h2>");
     // then insert image el and set src equal to var image
-    var image = thisvideo.thumbnails.default.url; //link to image from api
-    //thisdiv.append(WHAT).attr("src", image);
+    var image = thisvideo.thumbnail.sqDefault; //link to image from api, also hqDefault
+    thisdiv.append('<img src="" data-id="">');
+    var imgurl = $("#grid").find("div").last().find("img");
+    imgurl.attr({src: image,
+                 "data-id": idNo,
+                 "data-title": title,
+                 "data-viewcount": viewCount
+                });
 };
 
 // Function to  display + start a video that is clicked
-var playVideo = function (thisvideo) {
-    var video_id = thisvideo.id;
-    var video_title = thisvideo.title;
-    var video_viewCount = thisvideo.viewCount;
+var playVideo = function (video) {
+    console.log("playVideo started");
+    // hide grid with search results
+    $('#grid').toggle();
+    // get data attributes
+    var videoId = video.getAttribute("data-id");
+    var videoTitle = video.getAttribute("data-title");
+    var videoViewCount = video.getAttribute("data-viewcount");
     // iframe gets embedded in a variable
-    var video_frame = "<iframe width='640' height='385' src='http://www.youtube.com/embed/" +  video_id + "' frameborder='0' type='text/html'></iframe>";
+    var videoFrame = "<iframe width='640' height='385' src='http://www.youtube.com/embed/" +  videoId + "' frameborder='0' type='text/html'></iframe>";
     // the iframe gets embedded in the page
-    var videocontent = "<div id='title'>" + video_title + "</div><div>" + video_frame + "</div><div id='count'>" + video_viewCount + " views</div>";
-    $("#container_vid").html(videocontent);
+    var videoContent = "<div id='title'>" + videoTitle + "</div><div>" + videoFrame + "</div><div id='count'>" + videoViewCount + " views</div>";
+    $("#container_vid").html(videoContent);
 };
 
 /*--- Main search functions go here ---*/
@@ -99,7 +107,7 @@ var getVidsResult = function (userInput) {
     var tedEd = '+TED-ED';
     var apiversion = "&v=2";
     var link = 'https://gdata.youtube.com/feeds/api/videos?q=' + userInput + tedEd + apiversion + '&alt=jsonc';
-    //The ajax-function
+    //The ajax function
     var result = $.ajax({
         url: link,
         part: 'snippet',
@@ -110,10 +118,13 @@ var getVidsResult = function (userInput) {
         console.log("done started");
         for (var i = 0; i < result.data.items.length; i++) {
             console.log(result.data.items[i]);
-            displayVideo(result.data.items[i]);
-           }
-        })
-        .fail(function (jqXHR, error, errorThrown) {
+            // get id for every object
+            showVideos(result.data.items[i]);
+            // removes search message
+            clearMessage();
+        }
+    })
+    .fail(function (jqXHR, error, errorThrown) {
             var errorElem = showError(error);
             $('#top').append(errorElem);
         });
@@ -147,9 +158,9 @@ $(document).ready(function () {
 	});
     
     //Function for what happens when user clicks on videoitem in the grid
-    $("grid div").click(function () {
+    $("#grid").on("click", "div img", function () {
         console.log("image div was pressed");
-        //playVideo($(this)); // HOW PASS ID/VIDEOOBJECT
+        playVideo(this);
     });
 // Final end brackets for document ready function
 });

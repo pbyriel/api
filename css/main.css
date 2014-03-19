@@ -6,11 +6,11 @@ REMOVE POSITIONING BORDERS
 
 body {
 	font-family: sans-serif; 
-    height: 100%;
 }
 
 #main {
     border: 1px solid black;
+    height: auto;
     padding: 5px;
     /* remove top two lines after positioning */
     margin-left: auto;
@@ -66,8 +66,9 @@ body {
     transition: all 0.25s;
 }
 
-#videopart {
+.videopart {
     border: 1px dashed red;
+    display: none;
 }
 
 #response {
@@ -78,8 +79,6 @@ body {
 #container_vid {
     position: relative;
     padding-top: 10px;
-	height: 0;
-	overflow: hidden;
 }
  
 #container_vid iframe,
@@ -89,7 +88,6 @@ body {
     top: 0;
     left: 0;
     width: 80%;
-    height: 80%;
 }
 
 .videoitem img {
@@ -104,10 +102,8 @@ body {
     float: left; 
     margin: 5px;
     padding: 5px;
-    height: 350x; 
-	overflow:auto;
-    width: 300px; 
 }
+
 .videoitem:hover {
 	cursor: pointer;
 	border: 1px solid blue;
