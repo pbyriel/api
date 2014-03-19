@@ -58,7 +58,6 @@ function hideResults() {
 
 // Function to get title + set src of image
 var displayVideo = function (thisvideo) {
-    console.log("displayVideo started");
     // first append a div and addClass("videoitem");
     $("#grid").append("div").addClass("videoitem");
     // make it easy to refer to the last div
@@ -91,7 +90,7 @@ function newSearch(userInput) {
 	getVidsResult(userInput);
 }
 
-// Function containing ajax-call
+// Function containing ajax-call, end: &alt=json
 var getVidsResult = function (userInput) {
     console.log("getVidsResult started");
     // base link
@@ -105,13 +104,15 @@ var getVidsResult = function (userInput) {
         dataType: "jsonp",
         type: "GET"
     })
-    .done(function (result) {
-        console.log("done started");
-        for (var i = 0; i < result.data.items.length; i++) {
-            console.log(result.data.items[i]);
-            displayVideo(result.data.items[i]);
-           }
+    // what gets done with the result
+        .done(function (result) {
+            $.each(result.items, function (i, item) {
+                console.log(item);
+                var vid = displayVideo(item);
+                $('#grid').append(vid);
+            });
         })
+    // if all else fails...
         .fail(function (jqXHR, error, errorThrown) {
             var errorElem = showError(error);
             $('#top').append(errorElem);
