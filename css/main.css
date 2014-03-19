@@ -1,7 +1,7 @@
 /* TO DO:
-FINAL POSITIONING 
-FINAL ADJUSTMENTS
-REMOVE POSITIONING BORDERS 
+Style h1 and h2
+Style grid, so doesn't move around
+Search bar moves around when button is hovered
 */
 
 body {
@@ -9,24 +9,37 @@ body {
 }
 
 #main {
-    border: 1px solid black;
     height: auto;
     padding: 5px;
     /* remove top two lines after positioning */
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    width: 95%;
+    position: relative;
 }
 
 #topnav {
     padding-top: 10px;
     width: 100%;
-    border: 1px dashed blue;
+    text-align: center;
 }
 
 #visit {
-    border: 1px solid yellow;
-};
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#youtube {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: 600;
+}
+
+#youtube img {
+    vertical-align: middle;
+}
 
 #visit img {
     vertical-align: middle;
@@ -36,10 +49,13 @@ body {
 	text-decoration: none;
 }
 
+h1 {
+    margin-left: 0px;
+}
+
 #input {
     border-radius: 5px;
     font-size: 0.7em;
-    margin: 10px;
     padding: 5px;
 }
 
@@ -63,12 +79,6 @@ body {
 
 #button:hover{
     border: 2px solid DarkGrey;
-    transition: all 0.25s;
-}
-
-.videopart {
-    border: 1px dashed red;
-    display: none;
 }
 
 #response {
@@ -76,14 +86,19 @@ body {
     padding: 10px;
 }
 
-#container_vid {
+#grid {
+    display: none;
+}
+
+#player {
     position: relative;
     padding-top: 10px;
+    display: none;
 }
  
-#container_vid iframe,
-#container_vid object,
-#container_vid embed {
+#player iframe,
+#player object,
+#player embed {
     position: absolute;
     top: 0;
     left: 0;
@@ -98,15 +113,16 @@ body {
 }
 
 .videoitem {
-    border:1px solid LightGrey;
+    border:1px dotted LightGrey;
     float: left; 
     margin: 5px;
     padding: 5px;
+    width: 250px;
 }
 
 .videoitem:hover {
 	cursor: pointer;
-	border: 1px solid blue;
+	border: 3px solid DarkGrey;
 }
 
 #footer {

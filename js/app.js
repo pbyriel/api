@@ -1,5 +1,13 @@
 var earlierResult = false, uinput;
 
+/* TODO:
+Add message if no videos returned that match ted-ed
+// How to get back to searchresult? 
+    Make a link under Video
+    Store former searchresult in variable and display it again if link pressed?
+When you go directly from grid to new search display is now = none
+*/
+
 /*--- Helper functions go here ---*/
 
 // clears user input
@@ -24,45 +32,47 @@ var validateInput = function (userInput) {
     if (userInput == '') {
         alert("Please enter search terms");
     } else {
+        // Note to future self: actually this ought to return to 
+        // the caller function which should then call newSearch
         newSearch(userInput);
     }
 };
 
-// To tell user that we are indeed searching HOW TO MAKE IT DISAPPEAR AGAIN
-var displayMessage = function () {
-    $('#response').text('Looking for vidoes ...');
+// To tell user that we are indeed searching
+var displayMessage = function (userInput) {
+    $('#response').text('Looking for vidoes on ' + userInput);
     console.log("displayMessage ran");
 };
 
-// To hide results from last search
-function hideResults() {
+// To empty results from last search
+function emptyResults() {
+    console.log("emptyResult ran");
     if (earlierResult) {
-        //stop current video by resetting div
-        $('#container_vid').empty();
+        //clear current video or grid by resetting div
+        var player = $('#player'), grid = $('#grid');
+        player.empty();
+        grid.empty();
         //delete last response
         $("#response").text('');
-        // Clear grid of pictures from last search
-        $('#grid').empty();
-        // Hide video frame if displayed
-        $('#video').slideUp();
-        earlierResult = false;
     }
     console.log("hideResults ran");
 }
 
 // Function to get title + set src of image
 var showVideos = function (thisvideo) {
-    // chech if function ran
-    $(".videopart").toggle();
+    // clears former (eventual) errormessage
+    $("#error").empty();
+    $('#grid').toggle();
+    earlierResult = true;
     console.log("showVideos started");
     // set variables which will be encodes as data attributes
-    var idNo = thisvideo.id;
-    var viewCount = thisvideo.viewCount;
-    var title = thisvideo.title;
+    var idNo = thisvideo.id, viewCount = thisvideo.viewCount, title = thisvideo.title;
     // first append a div and addClass("videoitem");
-    $("#grid").append("<div>").addClass("videoitem");
+    $("#grid").append("<div>");
     // make it easy to refer to the last div
     var thisdiv = $("#grid").find("div").last();
+    // sets class for the new div
+    thisdiv.addClass("videoitem");
     // then insert an h2 and set h2 equal to var title
     thisdiv.append("<h2>" + title + "</h2>");
     // then insert image el and set src equal to var image
@@ -80,7 +90,7 @@ var showVideos = function (thisvideo) {
 var playVideo = function (video) {
     console.log("playVideo started");
     // hide grid with search results
-    $('#grid').toggle();
+    $("#player").toggle();
     // get data attributes
     var videoId = video.getAttribute("data-id");
     var videoTitle = video.getAttribute("data-title");
@@ -89,14 +99,14 @@ var playVideo = function (video) {
     var videoFrame = "<iframe width='640' height='385' src='http://www.youtube.com/embed/" +  videoId + "' frameborder='0' type='text/html'></iframe>";
     // the iframe gets embedded in the page
     var videoContent = "<div id='title'>" + videoTitle + "</div><div>" + videoFrame + "</div><div id='count'>" + videoViewCount + " views</div>";
-    $("#container_vid").html(videoContent);
+    $("#player").html(videoContent);
 };
 
 /*--- Main search functions go here ---*/
 // Search result is voided, and data gets sent to a function for getting vids
 function newSearch(userInput) {
-    hideResults();
-    displayMessage();
+    emptyResults();
+    displayMessage(userInput);
 	getVidsResult(userInput);
 }
 
@@ -114,15 +124,20 @@ var getVidsResult = function (userInput) {
         dataType: "jsonp",
         type: "GET"
     })
-    .done(function (result) {
-        console.log("done started");
-        for (var i = 0; i < result.data.items.length; i++) {
-            console.log(result.data.items[i]);
-            // get id for every object
-            showVideos(result.data.items[i]);
-            // removes search message
-            clearMessage();
-        }
+        .done(function (result) {
+            var resultset = result.data.items;
+            console.log("done started");
+            if (resultset.length > 0) {
+                for (var i = 0; i < resultset.length; i++) {
+                    console.log(resultset[i]);
+                    // get id for every object
+                    showVideos(resultset[i]);
+                    // removes search message
+                    clearMessage();
+                    } 
+            } else {
+                        $("#error").html("<h2>No videos were found</h2>");
+                    }
     })
     .fail(function (jqXHR, error, errorThrown) {
             var errorElem = showError(error);
@@ -160,6 +175,7 @@ $(document).ready(function () {
     //Function for what happens when user clicks on videoitem in the grid
     $("#grid").on("click", "div img", function () {
         console.log("image div was pressed");
+        $("#grid").toggle();
         playVideo(this);
     });
 // Final end brackets for document ready function

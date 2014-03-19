@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!-- Do something so it doesn't seem like page was made by ted ed -->
 <head>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="img/favicon.png">
@@ -11,19 +12,20 @@
 <body>
     <div id="main">
         <div id="topnav">
-            <h1>TED ED api</h1>
-            <div id="visit">Visit<br><a href="http://ed.ted.com/"><img alt="logo" src="img/logo.jpg" id="logo" /></a></div>
-            <div id="youtube">Api by <a href="http://www.youtube.com" target="_blank"><img id="youtube-logo" src="img/logo_youtube.png" alt="YouTube logo"/></a></div> 
+            <div id="visit"><a href="http://ed.ted.com/"><img alt="logo" src="img/logo.jpg" id="logo" /></a></div>
+            <div id="youtube"><a href="http://www.youtube.com" target="_blank"><img id="youtube-logo" src="img/logo_youtube.png" alt="YouTube logo"/></a>&ensp;&ensp;<a href="https://developers.google.com/youtube/" target="_blank" alt="link to developer ressources for api">API Resources</a></div> 
             <div id="search">
+                <h1>Get TED Ed vids</h1>
                 <input id="input" name="input" type="text" maxlength="25" size="25" placeholder="Search for talks by tag"> <a id="button">Search</a>
             </div>   
         </div> <!-- top div ends here -->
         <div class="videopart">
             <div id="results">
+                <div id="error"></div>
                 <h2 id="response"></h2>
             </div> <!-- results div ends here -->
             <div id="grid"> </div> <!-- grid for videos end here -->
-            <div id="container_vid"></div> <!-- container_vid ends here-->
+            <div id="player"></div> <!-- container_vid ends here-->
         </div> <!-- videopart ends here -->
     </div> <!-- main div ends here -->
 </body>
