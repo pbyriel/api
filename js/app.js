@@ -94,8 +94,9 @@ function newSearch(userInput) {
 var getVidsResult = function (userInput) {
     console.log("getVidsResult started");
     // base link
+    var tedEd = '+TED-ED';
     var apiversion = "&v=2";
-    var link = 'https://gdata.youtube.com/feeds/api/videos?q=' + userInput + '+TED-ED' + apiversion + "&alt=jsonc';
+    var link = 'https://gdata.youtube.com/feeds/api/videos?q=' + userInput + tedEd + apiversion + '&alt=jsonc';
     //The ajax-function
     var result = $.ajax({
         url: link,
