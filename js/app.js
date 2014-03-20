@@ -1,8 +1,5 @@
 var earlierResult = false, uinput;
 
-//TO DO 
-//Sort by ratingCount ranking
-
 /*--- Helper functions go here ---*/
 
 // clears user input
@@ -21,7 +18,7 @@ var showError = function (error) {
 	return errorText;
 };
 
-// To validate userInput
+// To validate that userInput is not empty string
 var validateInput = function (userInput) {
     console.log("validateInput started");
     if (userInput == '') {
@@ -54,18 +51,18 @@ function emptyResults() {
     console.log("hideResults ran");
 }
 
-// Function to get title + set src of image
-var showVideos = function (thisvideo) {
+// Function to to display grid with vids + get title + set src of image
+var buildGrid = function (thisvideo) {
     // clears former (eventual) errormessage
     $("#error").empty();
     // if gridvalue is display none, then toggle)
     if ($('#grid').css({display: "none"})) {
         $('#grid').toggle(); }
     earlierResult = true;
-    console.log("showVideos started");
+    console.log("buildGrid started");
     // set variables which will be encodes as data attributes
     var idNo = thisvideo.id, viewCount = thisvideo.viewCount, title = thisvideo.title;
-    // first append a div and addClass("videoitem");
+    // first append a div ;
     $("#grid").append("<div>");
     // make it easy to refer to the last div
     var thisdiv = $("#grid").find("div").last();
@@ -73,10 +70,11 @@ var showVideos = function (thisvideo) {
     thisdiv.addClass("videoitem");
     // then insert an h2 and set h2 equal to var title
     thisdiv.append("<p>" + title + "</p>");
-    // then insert image el and set src equal to var image
+    // then insert img element and set src equal to var image
     var image = thisvideo.thumbnail.sqDefault; //link to image from api, also hqDefault
     thisdiv.append('<img src="" data-id="">');
     var imgurl = $("#grid").find("div").last().find("img");
+    // encode data with image
     imgurl.attr({src: image,
                  "data-id": idNo
                 });
@@ -137,7 +135,7 @@ var getVidsResult = function (userInput) {
                 // get json object from array and put it into the grid function
                 // At the same time, remove so array is emptied
                 for (var i = 0; i < sortedArray.length; i++) {
-                    showVideos(sortedArray.pop());
+                    buildGrid(sortedArray.pop());
                 }
                 // removes search message
                 clearMessage();
@@ -197,12 +195,13 @@ $(document).ready(function () {
         document.reload();
     });
     
-    //Function for what happens when  clicks home icon
+    //Function for what happens when mouse hovers over home icon
     $("#home").mouseover(function () {
         var img = $("#home").find("img");
         img.attr({src: "img/homeBlack.png"});
     });
-
+    
+    //Function for what happens when mouse leaves home icon
     $("#home").mouseout(function () {
         var img = $("#home").find("img");
         img.attr({src: "img/homeGrey.png"});
