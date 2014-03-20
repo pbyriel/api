@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<!-- Do something so it doesn't seem like page was made by ted ed -->
+<!-- Insert "Home" logo and make it reload page -->  
+<!-- Make the text for search box semantically correct re html5 -->
 <head>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="img/favicon.png">
@@ -12,11 +13,12 @@
 <body>
     <div id="main">
         <div id="topnav">
-            <div id="visit"><a href="http://ed.ted.com/"><img alt="logo" src="img/logo.jpg" id="logo" /></a></div>
+            <div id="home"><a href=""><img src="img/homeGrey.png" alt="home_icon"></a></div>
             <div id="youtube"><a href="http://www.youtube.com" target="_blank"><img id="youtube-logo" src="img/logo_youtube.png" alt="YouTube logo"/></a>&ensp;&ensp;<a href="https://developers.google.com/youtube/" target="_blank" alt="link to developer ressources for api">API Resources</a></div> 
             <div id="search">
-                <h1>Get TED Ed vids</h1>
+                <h1>Get <a href="http://ed.ted.com/"><img alt="logo" src="img/logo.jpg" id="logo" /></a> vids</h1>
                 <input id="input" name="input" type="text" maxlength="25" size="25" placeholder="Search for talks by tag"> <a id="button">Search</a>
+                <p>e.g.: math, computer, physics</p>
             </div>   
         </div> <!-- top div ends here -->
         <div class="videopart">
@@ -24,7 +26,7 @@
                 <div id="error"></div>
                 <h2 id="response"></h2>
             </div> <!-- results div ends here -->
-            <div id="grid"> </div> <!-- grid for videos end here -->
+            <div id="grid"></div> <!-- grid for videos end here -->
             <div id="player"></div> <!-- container_vid ends here-->
         </div> <!-- videopart ends here -->
     </div> <!-- main div ends here -->

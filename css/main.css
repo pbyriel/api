@@ -1,11 +1,11 @@
 /* TO DO:
-Style h1 and h2
-Style grid, so doesn't move around
-Search bar moves around when button is hovered
+Youtube logo not behaving when resize small
+Ideally, all pictures would be aligned
+Fix searchfield - out of style range
 */
 
 body {
-	font-family: sans-serif; 
+	font-family: Helvetica, sans-serif; 
 }
 
 #main {
@@ -16,6 +16,7 @@ body {
     margin-right: auto;
     width: 95%;
     position: relative;
+    text-align: center;
 }
 
 #topnav {
@@ -24,10 +25,19 @@ body {
     text-align: center;
 }
 
-#visit {
+#topnav a:not(#button), #topnav a:visited:not(#button) {
+    color: black;
+    text-decoration: none;
+}
+
+#home {
     position: absolute;
     top: 10px;
     left: 10px;
+}
+
+#home img {
+    width: 32px;
 }
 
 #youtube {
@@ -37,11 +47,7 @@ body {
     font-weight: 600;
 }
 
-#youtube img {
-    vertical-align: middle;
-}
-
-#visit img {
+#topnav img {
     vertical-align: middle;
 }
 
@@ -49,8 +55,12 @@ body {
 	text-decoration: none;
 }
 
+#search img {
+    width: 38px;
+}
+
 h1 {
-    margin-left: 0px;
+    margin-left: -20px;
 }
 
 #input {
@@ -65,7 +75,8 @@ h1 {
 
 #button {
     background: none;
-    border: 1px solid LightGrey;
+    border: 1px dotted DarkGrey;
+    color: DarkGrey;
     border-radius: 10px;
     cursor: pointer;
     display: inline-block;
@@ -73,12 +84,12 @@ h1 {
     margin: 5px;
     padding: 5px;
     text-align: center;
-    text-decoration: none;
     width: 50px;
 }
 
 #button:hover{
-    border: 2px solid DarkGrey;
+    border: 1px dotted Grey;
+    color: black;
 }
 
 #response {
@@ -86,14 +97,27 @@ h1 {
     padding: 10px;
 }
 
-#grid {
-    display: none;
+.videopart {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;   
 }
 
+#grid {
+    display: none;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* http://stackoverflow.com/questions/14250583/safari-on-ipad-ios6-does-not-scale-html5-video-to-fill-100-of-page-width */
 #player {
     position: relative;
-    padding-top: 10px;
     display: none;
+    width: 640px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
  
 #player iframe,
@@ -102,35 +126,52 @@ h1 {
     position: absolute;
     top: 0;
     left: 0;
-    width: 80%;
+    width: 640px;
+    height: 360px;
 }
 
-.videoitem img {
-    width: 175px;
+#back {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+    color: DarkGrey;
 }
-.videoitem h2 {
-    font-size: 1em;
+
+#back:hover {
+    text-decoration: underline;
+    color: black;
 }
+
 
 .videoitem {
     border:1px dotted LightGrey;
-    float: left; 
     margin: 5px;
     padding: 5px;
-    width: 250px;
+    width: 265px;
+    height: 200px;
+    float: left;
 }
 
 .videoitem:hover {
 	cursor: pointer;
-	border: 3px solid DarkGrey;
+	border: 1px dotted red;
 }
 
-#footer {
-    border: 1px dashed red;
-    font-size: 1em;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    position: relative;
+
+.videoitem img {
+    width: 175px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.videoitem p {
+    font-size: 0.9em;
+    color: rgb(110,110,110);
+    padding-right: 10px;
+    padding-left: 15px;
+    text-align: left;
 }
 
 #youtube-logo {

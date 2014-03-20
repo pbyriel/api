@@ -1,12 +1,7 @@
-var earlierResult = false, uinput;
+var earlierResult = false, uinput, /*vidsArray*/;
 
-/* TODO:
-Add message if no videos returned that match ted-ed
-// How to get back to searchresult? 
-    Make a link under Video
-    Store former searchresult in variable and display it again if link pressed?
-When you go directly from grid to new search display is now = none
-*/
+//TO DO 
+//Sort by ratingCount ranking
 
 /*--- Helper functions go here ---*/
 
@@ -32,8 +27,9 @@ var validateInput = function (userInput) {
     if (userInput == '') {
         alert("Please enter search terms");
     } else {
-        // Note to future self: actually this ought to return to 
-        // the caller function which should then call newSearch
+        /* Note to future self: actually this ought to return to 
+           the caller function which should then call newSearch
+           Flagged: "Don't care much" by user current_Byriel */
         newSearch(userInput);
     }
 };
@@ -62,7 +58,9 @@ function emptyResults() {
 var showVideos = function (thisvideo) {
     // clears former (eventual) errormessage
     $("#error").empty();
-    $('#grid').toggle();
+    // if gridvalue is display none, then toggle)
+    if ($('#grid').css({display: "none"})) {
+        $('#grid').toggle(); }
     earlierResult = true;
     console.log("showVideos started");
     // set variables which will be encodes as data attributes
@@ -74,32 +72,31 @@ var showVideos = function (thisvideo) {
     // sets class for the new div
     thisdiv.addClass("videoitem");
     // then insert an h2 and set h2 equal to var title
-    thisdiv.append("<h2>" + title + "</h2>");
+    thisdiv.append("<p>" + title + "</p>");
     // then insert image el and set src equal to var image
     var image = thisvideo.thumbnail.sqDefault; //link to image from api, also hqDefault
     thisdiv.append('<img src="" data-id="">');
     var imgurl = $("#grid").find("div").last().find("img");
     imgurl.attr({src: image,
-                 "data-id": idNo,
-                 "data-title": title,
-                 "data-viewcount": viewCount
+                 "data-id": idNo
                 });
 };
 
 // Function to  display + start a video that is clicked
 var playVideo = function (video) {
+    var player = $("#player");
     console.log("playVideo started");
     // hide grid with search results
-    $("#player").toggle();
-    // get data attributes
+    $("#grid").toggle();
+    player.toggle();
+    // get data id to identify which video to display
     var videoId = video.getAttribute("data-id");
-    var videoTitle = video.getAttribute("data-title");
-    var videoViewCount = video.getAttribute("data-viewcount");
     // iframe gets embedded in a variable
-    var videoFrame = "<iframe width='640' height='385' src='http://www.youtube.com/embed/" +  videoId + "' frameborder='0' type='text/html'></iframe>";
+    var videoFrame = "<iframe src='http://www.youtube.com/embed/" +  videoId + "' frameborder='0' type='text/html' scale='aspect'></iframe>";
     // the iframe gets embedded in the page
-    var videoContent = "<div id='title'>" + videoTitle + "</div><div>" + videoFrame + "</div><div id='count'>" + videoViewCount + " views</div>";
-    $("#player").html(videoContent);
+    var videoContent = "<div>" + videoFrame + "</div>";
+    player.html(videoContent);
+    player.append("<p id='back'>Back to result</p>");
 };
 
 /*--- Main search functions go here ---*/
@@ -129,12 +126,15 @@ var getVidsResult = function (userInput) {
             console.log("done started");
             if (resultset.length > 0) {
                 for (var i = 0; i < resultset.length; i++) {
-                    console.log(resultset[i]);
-                    // get id for every object
-                    showVideos(resultset[i]);
-                    // removes search message
-                    clearMessage();
+                    // checks to see if ted-ed also equals uploader
+                    if (resultset[i].uploader == "tededucation") {
+                        // should sort for ranking here
+                        // get id for every object
+                        showVideos(resultset[i]);
+                        // removes search message
+                        clearMessage();
                     } 
+                }
             } else {
                         $("#error").html("<h2>No videos were found</h2>");
                     }
@@ -175,8 +175,31 @@ $(document).ready(function () {
     //Function for what happens when user clicks on videoitem in the grid
     $("#grid").on("click", "div img", function () {
         console.log("image div was pressed");
-        $("#grid").toggle();
         playVideo(this);
+    });
+    
+    //Function for getting from video back to search result
+    $("#player").on("click", "#back", function () {
+        console.log("back was was clicked");
+        $("#player").empty().toggle();
+        $("#grid").toggle();
+    });
+    
+    //Function for what happens when user clicks home icon
+    $("#home").on("click", "img", function () {
+        console.log("home was was clicked");
+        document.reload();
+    });
+    
+    //Function for what happens when  clicks home icon
+    $("#home").mouseover(function () {
+        var img = $("#home").find("img");
+        img.attr({src: "img/homeBlack.png"});
+    });
+
+    $("#home").mouseout(function () {
+        var img = $("#home").find("img");
+        img.attr({src: "img/homeGrey.png"});
     });
 // Final end brackets for document ready function
 });
