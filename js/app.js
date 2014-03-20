@@ -135,7 +135,7 @@ var getVidsResult = function (userInput) {
                 var sortedArray = _.sortBy(vidsArray, "ratingCount");
                 // get json object from array and put it into the grid function
                 // At the same time, remove so array is emptied
-                for (var i = 0; i < vidsArray.length; i++) {
+                for (var i = 0; i < sortedArray.length; i++) {
                     showVideos(sortedArray.pop());
                 }
                 // removes search message
