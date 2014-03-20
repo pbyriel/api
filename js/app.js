@@ -1,4 +1,4 @@
-var earlierResult = false, uinput, /*vidsArray*/;
+var earlierResult = false, uinput, vidsArray = [];
 
 //TO DO 
 //Sort by ratingCount ranking
@@ -128,13 +128,18 @@ var getVidsResult = function (userInput) {
                 for (var i = 0; i < resultset.length; i++) {
                     // checks to see if ted-ed also equals uploader
                     if (resultset[i].uploader == "tededucation") {
-                        // should sort for ranking here
-                        // get id for every object
-                        showVideos(resultset[i]);
-                        // removes search message
-                        clearMessage();
+                        vidsArray.push(resultset[i]);
                     } 
                 }
+                //criteria to order by is vidsarray[i].ratingCount
+                var sortedArray = _.sortBy(vidsArray, "ratingCount");
+                // get json object from array and put it into the grid function
+                // At the same time, remove so array is emptied
+                for (var i = 0; i < vidsArray.length; i++) {
+                    showVideos(sortedArray.pop());
+                }
+                // removes search message
+                clearMessage();
             } else {
                         $("#error").html("<h2>No videos were found</h2>");
                     }

@@ -47,6 +47,10 @@ body {
     font-weight: 600;
 }
 
+#youtube-logo {
+    vertical-align: middle;
+}
+
 #topnav img {
     vertical-align: middle;
 }
@@ -108,6 +112,16 @@ h1 {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+}
+
+#sorted {
+    font-size: 0.8em;
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    display: block;
+    color: DarkGrey;
 }
 
 /* http://stackoverflow.com/questions/14250583/safari-on-ipad-ios6-does-not-scale-html5-video-to-fill-100-of-page-width */
@@ -174,6 +188,3 @@ h1 {
     text-align: left;
 }
 
-#youtube-logo {
-    vertical-align: middle;
-}

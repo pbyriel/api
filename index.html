@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
-<!-- Insert "Home" logo and make it reload page -->  
-<!-- Make the text for search box semantically correct re html5 -->
 <head>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="img/favicon.png">
     <title>TED-ED api</title>
     <link rel="stylesheet" href="css/main.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/underscore-min.js"></script> <!-- from http://underscorejs.org/ -->
     <script src="js/app.js"></script>
 </head>
 <body>
@@ -17,8 +16,7 @@
             <div id="youtube"><a href="http://www.youtube.com" target="_blank"><img id="youtube-logo" src="img/logo_youtube.png" alt="YouTube logo"/></a>&ensp;&ensp;<a href="https://developers.google.com/youtube/" target="_blank" alt="link to developer ressources for api">API Resources</a></div> 
             <div id="search">
                 <h1>Get <a href="http://ed.ted.com/"><img alt="logo" src="img/logo.jpg" id="logo" /></a> vids</h1>
-                <input id="input" name="input" type="text" maxlength="25" size="25" placeholder="Search for talks by tag"> <a id="button">Search</a>
-                <p>e.g.: math, computer, physics</p>
+                <input id="input" name="input" type="text" maxlength="25" size="55" placeholder="Search for talks by tag, e.g.: math, computer, physics"> <a id="button">Search</a>
             </div>   
         </div> <!-- top div ends here -->
         <div class="videopart">
@@ -26,7 +24,9 @@
                 <div id="error"></div>
                 <h2 id="response"></h2>
             </div> <!-- results div ends here -->
-            <div id="grid"></div> <!-- grid for videos end here -->
+            <div id="grid">
+                <div id="sorted">Sorted by rating</div>
+            </div> <!-- grid for videos end here -->
             <div id="player"></div> <!-- container_vid ends here-->
         </div> <!-- videopart ends here -->
     </div> <!-- main div ends here -->
