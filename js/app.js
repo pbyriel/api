@@ -1,4 +1,4 @@
-var earlierResult = false, uinput, vidsArray = [];
+var earlierResult = false, uinput;
 
 //TO DO 
 //Sort by ratingCount ranking
@@ -122,6 +122,7 @@ var getVidsResult = function (userInput) {
         type: "GET"
     })
         .done(function (result) {
+            var vidsArray = [];
             var resultset = result.data.items;
             console.log("done started");
             if (resultset.length > 0) {
