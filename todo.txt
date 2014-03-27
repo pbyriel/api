@@ -1,0 +1,5 @@
+the resize issue could be "image ratio" issue. try looking it up
+
+it would have to be class="videoitem" if you use it more then once. I would figure they would line up since they are all created the same way
+
+put the resultgird in it's own div,  make that div a certain percentage of the page width and then use margin: 0 auto

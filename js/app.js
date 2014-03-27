@@ -57,7 +57,8 @@ var buildGrid = function (thisvideo) {
     $("#error").empty();
     // if gridvalue is display none, then toggle)
     if ($('#grid').css({display: "none"})) {
-        $('#grid').toggle(); }
+        $('#grid').toggle();
+        $('#sorted').css({display: "block"});}
     earlierResult = true;
     console.log("buildGrid started");
     // set variables which will be encodes as data attributes
@@ -86,6 +87,7 @@ var playVideo = function (video) {
     console.log("playVideo started");
     // hide grid with search results
     $("#grid").toggle();
+    $('#sorted').hide();
     player.toggle();
     // get data id to identify which video to display
     var videoId = video.getAttribute("data-id");
@@ -187,6 +189,7 @@ $(document).ready(function () {
         console.log("back was was clicked");
         $("#player").empty().toggle();
         $("#grid").toggle();
+        $('#sorted').css({display: "block"});
     });
     
     //Function for what happens when user clicks home icon

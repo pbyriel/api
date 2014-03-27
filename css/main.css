@@ -5,8 +5,7 @@ Fix searchfield - out of style range
 */
 
 body {
-	font-family: Helvetica, sans-serif; 
-}
+	font-family: Helvetica, sans-serif;}
 
 #main {
     height: auto;
@@ -16,66 +15,45 @@ body {
     margin-right: auto;
     width: 95%;
     position: relative;
-    text-align: center;
-}
+    text-align: center;}
 
 #topnav {
     padding-top: 10px;
     width: 100%;
-    text-align: center;
-}
-
+    text-align: center;}
 #topnav a:not(#button), #topnav a:visited:not(#button) {
     color: black;
-    text-decoration: none;
-}
+    text-decoration: none;}
+#topnav img {
+    vertical-align: middle;}
 
 #home {
     position: absolute;
     top: 10px;
-    left: 10px;
-}
-
+    left: 10px;}
 #home img {
-    width: 32px;
-}
+    width: 32px;}
 
 #youtube {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-weight: 600;
-}
-
+    font-weight: 600;}
 #youtube-logo {
-    vertical-align: middle;
-}
-
-#topnav img {
-    vertical-align: middle;
-}
-
-#topnav a {
-	text-decoration: none;
-}
+    vertical-align: middle;}
 
 #search img {
-    width: 38px;
-}
+    width: 38px;}
 
 h1 {
-    margin-left: -20px;
-}
+    margin-left: -20px;}
 
 #input {
     border-radius: 5px;
     font-size: 0.7em;
-    padding: 5px;
-}
-
+    padding: 5px;}
 #input:focus, input:hover {
-    outline: 0;
-}
+    outline: 0;}
 
 #button {
     background: none;
@@ -88,41 +66,32 @@ h1 {
     margin: 5px;
     padding: 5px;
     text-align: center;
-    width: 50px;
-}
-
+    width: 50px;}
 #button:hover{
     border: 1px dotted Grey;
     color: black;
-}
+    text-decoration: none;}
+
+#sorted {
+    font-size: 0.8em;
+    color: DarkGrey;
+    position: relative;
+    left: -112px;
+    display: none;}
 
 #response {
     font-size: 1.5em;
-    padding: 10px;
-}
+    padding: 10px;}
 
 .videopart {
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;   
-}
+    margin: 0 auto;}
 
 #grid {
     display: none;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-}
-
-#sorted {
-    font-size: 0.8em;
-    position: absolute;
-    top: -15px;
-    left: 10px;
-    display: block;
-    color: DarkGrey;
-}
+    margin: 0 auto;
+    max-width: 80%}
 
 /* http://stackoverflow.com/questions/14250583/safari-on-ipad-ios6-does-not-scale-html5-video-to-fill-100-of-page-width */
 #player {
@@ -131,9 +100,7 @@ h1 {
     width: 640px;
     height: 400px;
     margin-left: auto;
-    margin-right: auto;
-}
- 
+    margin-right: auto;}
 #player iframe,
 #player object,
 #player embed {
@@ -141,22 +108,17 @@ h1 {
     top: 0;
     left: 0;
     width: 640px;
-    height: 360px;
-}
+    height: 360px;}
 
 #back {
     position: absolute;
     bottom: 0;
     left: 0;
     cursor: pointer;
-    color: DarkGrey;
-}
-
+    color: DarkGrey;}
 #back:hover {
     text-decoration: underline;
-    color: black;
-}
-
+    color: black;}
 
 .videoitem {
     border:1px dotted LightGrey;
@@ -164,27 +126,19 @@ h1 {
     padding: 5px;
     width: 265px;
     height: 200px;
-    float: left;
-}
-
+    display: inline-block;}
 .videoitem:hover {
 	cursor: pointer;
-	border: 1px dotted red;
-}
-
-
+	border: 1px dotted red;}
 .videoitem img {
     width: 175px;
     margin-left: auto;
     margin-right: auto;
-    display: block;
-}
-
+    display: block;}
 .videoitem p {
     font-size: 0.9em;
     color: rgb(110,110,110);
     padding-right: 10px;
     padding-left: 15px;
-    text-align: left;
-}
+    text-align: left;}
 
